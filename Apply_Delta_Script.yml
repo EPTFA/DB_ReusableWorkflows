@@ -24,6 +24,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+        environment: 'Development'
       - name: Apply delta inline
         run: cmd.exe /K sqlcmd -S ${{ inputs.target_sql_server }} -i ${{ github.workspace }}\${{ input.delta_script_name }}
       
