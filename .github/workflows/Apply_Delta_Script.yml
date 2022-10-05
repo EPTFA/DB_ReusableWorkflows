@@ -15,15 +15,15 @@ on:
    #     required: false
    
 jobs:
-  # This workflow contains a single job called "build"
-  Update SQL Server with Delta Script:   
-  runs-on: self-hosted
-    defaults:
+  Update_SQL_Server_with_Delta_Script:   
+  
+   runs-on: self-hosted
+   environment: 'Development'
+   defaults:
       run:
         working-directory: ${{ github.workspace }}
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-        environment: 'Development'
-      - name: Apply delta inline
-        run: cmd.exe /K sqlcmd -S ${{ inputs.target_sql_server }} -i ${{ github.workspace }}\${{ input.delta_script_name }}
+  # Steps represent a sequence of tasks that will be executed as part of the job
+   steps:
+     - name: Apply delta inline
+       run: cmd.exe /K sqlcmd -S ${{ inputs.target_sql_server }} -i ${{ github.workspace }}\${{ input.delta_script_name }}
