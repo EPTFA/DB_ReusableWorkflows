@@ -1,0 +1,29 @@
+name: Apply SQL Delta Script to target
+on:
+  workflow_call:
+    inputs:
+      target_sql_server:
+        required: true
+        type: string
+      delta_script_name:
+        required: true
+        type: string
+   # secrets:
+   #   sql_user_name:
+   #     required: false
+   #   sql_user_password:
+   #     required: false
+   
+jobs:
+  # This workflow contains a single job called "build"
+  Update SQL Server with Delta Script:   
+  runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+        environment: 'Development'
+      - name: Apply delta inline
+        run: cmd.exe /K sqlcmd -S ${{ inputs.target_sql_server }} -i ${{ github.workspace }}\${{ input.delta_script_name }}
