@@ -11,7 +11,7 @@ on:
 
    
 jobs:
-  Display a message with input values as echo:   
+  Reusabble_fil_2:   
   
    runs-on: windows-latest
    #environment: 'Development'
@@ -24,8 +24,8 @@ jobs:
      - name: See if ref name is still avaliable
        run: echo "This is in reusablee file 2 - what branch does it think its using  $GITHUB_REF_NAME"
        
-      - name: Check inputvalue_one - reusable file 2
-       run: echo "This is in reusable file 2 - what value is in var inputvalue_one  $inputs.inputvalue_one"
+     - name: Check inputvalue_one - reusable file 2
+       run: echo "This is in reusable file 2 - what value is in var inputvalue_one  ---   ${{ inputs.inputvalue_one }} "
        
-      - name: Check inputvalue_two - reusable file2
-       run: echo "This is in reusable file 2 - what value is in var inputvalue_one  $inputs.inputvalue_two"
+     - name: Check inputvalue_two - reusable file 2
+       run: echo "This is in reusable file 2- what value is in var inputvalue_two  ---   ${{ inputs.inputvalue_two }}"
