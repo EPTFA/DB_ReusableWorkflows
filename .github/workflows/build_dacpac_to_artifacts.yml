@@ -2,7 +2,10 @@ name: Re-usable Workflow file 2
 on:
   workflow_call:
     inputs:
-      slqserverfullname:
+      slqserverinstancename:
+        required: true
+        type: string
+      slqservername:
         required: true
         type: string
       databasename:
@@ -34,7 +37,7 @@ jobs:
           sql-version: 14
               
       - name: Build dacpac
-        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ slqserverfullname }} /SourceDatabaseName:${{ databasename }}
+        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ inputs.slqserverinstancename }}\${{ inputs.slqservername }} /SourceDatabaseName:${{ databasename }}
         # run: sqlpackage.exe /TargetFile:%1 /Action:Extract /SourceServerName:%2 /SourceDatabaseName:%3
         
       - uses: actions/upload-artifact@v3
