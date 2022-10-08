@@ -26,10 +26,6 @@ jobs:
    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
-      # this Action should follow steps to set up Python build environment
-      - name: Install Python dependencies
-        uses: py-actions/py-dependency-install@v3  
         
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
