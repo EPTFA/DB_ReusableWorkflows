@@ -1,0 +1,31 @@
+name: Re-usable Workflow file 1 cmd
+on:
+  workflow_call:
+    inputs:
+      inputvalue_one:
+        required: true
+        type: string
+      inputvalue_two:
+        required: true
+        type: string
+
+   
+jobs:
+  Run_reusable_workflow1:   
+  
+   runs-on: windows-latest
+   #environment: 'Development'
+   defaults:
+      run:
+        shell: cmd
+
+  # Steps represent a sequence of tasks that will be executed as part of the job
+   steps:
+     - name: See if ref name is still avaliable
+       run: echo "This is in reusablee file 1 - what branch does it think its using  $GITHUB_REF_NAME"
+       
+     - name: Check inputvalue_one - reusable file 1
+       run: echo "This is in reusable file 1 - what value is in var inputvalue_one  ---   ${{ inputs.inputvalue_one }} "
+       
+     - name: Check inputvalue_two - reusable file 1
+       run: echo "This is in reusable file 1 - what value is in var inputvalue_two  ---   ${{ inputs.inputvalue_two }}"
