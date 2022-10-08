@@ -18,7 +18,7 @@ on:
 jobs:
   Reusabble_fil_2:   
   
-   runs-on: windows-latest
+   runs-on: self-hosted #windows-latest
    #environment: 'Development'
    defaults:
       run:
