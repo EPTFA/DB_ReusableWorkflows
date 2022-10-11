@@ -16,7 +16,7 @@ on:
         type: string
    
 jobs:
-  Reusabble_fil_2:   
+  Build_dacpac_file_to_arifacts_reusableworkflow:   
   
    runs-on: self-hosted #windows-latest
    #environment: 'Development'
@@ -26,7 +26,7 @@ jobs:
    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        
+               
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
