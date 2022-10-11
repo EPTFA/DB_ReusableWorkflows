@@ -16,7 +16,7 @@ on:
         type: string
    
 jobs:
-  Build_dacpac_file_to_arifacts_reusableworkflow:   
+  Build_dacpac_file_to_arifacts:   
   
    runs-on: self-hosted #windows-latest
    #environment: 'Development'
@@ -41,21 +41,8 @@ jobs:
           name: my-artifact
           path: ${{ github.workspace }}/${{ inputs.outputfilename }}
    
-      - name: check output file name
-        run: echo "This is the output filename $github.workspace / $inputs.outputfilename"
+      #- name: check output file name
+      #  run: echo "This is the output filename $github.workspace / $inputs.outputfilename"
         
-   #   create dacpac using sqlpackage for current server database
-   #   - name: Build dacpac from SQL Server Database
-   #     env:
-   #       outputfile: ${{ github.workspace }}/svr_GITHUB_ACTIONDB_TESTING.dacpac
-   #       server:  ${{ inputs.slqserverfullname }}
-   #       databasename: ${{ inputs.databasename }}
-   #     run: ./exec_sqlpackage_build_dacpac_from_sql.bat ${{ env.outputfile }} ${{ env.server }} ${{ env.databasename }}
-        
-   # steps:
-   #  - name: See if ref name is still avaliable
-   #    run: echo "This is in reusablee file 2 - what branch does it think its using  $GITHUB_REF_NAME"
-       
-   #  - name: Check inputvalue_one - reusable file 2
-   #    run: echo "This is in reusable file 2 - what value is in var inputvalue_one  ---   ${{ inputs.inputvalue_one }} "
+   
 
