@@ -1,4 +1,4 @@
-name: Re-usable Workflow file 2
+name: Build_dacpac_from_repo_add_to_artifacts
 on:
   workflow_call:
     inputs:
@@ -16,7 +16,7 @@ on:
         type: string
    
 jobs:
-  Build_dacpac_file_to_arifacts:   
+  Build_dacpac_file_and_add_to_arifacts:   
   
    runs-on: self-hosted #windows-latest
    #environment: 'Development'
