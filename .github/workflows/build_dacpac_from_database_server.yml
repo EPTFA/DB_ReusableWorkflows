@@ -17,6 +17,15 @@ on:
       
    
 jobs:
+  Check_env_variable:
+    runs-on: self-hosted #windows-latest
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      - name: Run script with branch variable
+        run: echo "We are running code for branch - %GITHUB_REF_NAME%" 
+        
   Build_dacpac_file_and_add_to_arifacts_env-dev:   
    if: github.ref.name == 'env-dev'   
    runs-on: self-hosted #windows-latest
