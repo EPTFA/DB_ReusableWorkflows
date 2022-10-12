@@ -53,7 +53,7 @@ jobs:
           path: ${{ github.workspace }}/${{ inputs.outputfilename }}
    
   Build_dacpac_file_and_add_to_arifacts_env-qa:   
-     if: github.ref.name == 'env-qa'   
+     if: ${{ github.ref.name }} == 'env-qa'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
@@ -80,7 +80,7 @@ jobs:
             path: ${{ github.workspace }}/${{ inputs.outputfilename }}
  
   Build_dacpac_file_and_add_to_arifacts_env-prod:   
-     if: github.ref.name == 'main'   
+     if: ${{ github.ref.name }} == 'master'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
