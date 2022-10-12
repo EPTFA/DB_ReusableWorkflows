@@ -24,7 +24,7 @@ jobs:
         run: echo "We are running code for input envirornmnt -  ${{ inputs.branchname }} " 
        
       - name: Add sqlpackage to PATH
-        uses: coreywebber/setup-sqlpackage@v1.03
+        uses: coreywebber/setup-sqlpackage@v1.0.3
         with:
           sql-version: 14
               
@@ -50,7 +50,7 @@ jobs:
           run: echo "We are running code for branch - ${{ inputs.branchname }}"
         
         - name: Add sqlpackage to PATH
-          uses: coreywebber/setup-sqlpackage@v1.03
+          uses: coreywebber/setup-sqlpackage@v1.0.3
           with:
             sql-version: 14
 
@@ -76,7 +76,7 @@ jobs:
           run: echo "We are running code for branch - ${{ inputs.branchname }}" 
         
         - name: Add sqlpackage to PATH
-          uses: coreywebber/setup-sqlpackage@v1.03
+          uses: coreywebber/setup-sqlpackage@v1.0.3
           with:
             sql-version: 14
 
