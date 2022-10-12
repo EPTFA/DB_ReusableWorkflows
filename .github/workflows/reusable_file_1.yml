@@ -29,3 +29,8 @@ jobs:
        
      - name: Check inputvalue_two - reusable file 1
        run: echo "This is in reusable file 1 - what value is in var inputvalue_two  ---   ${{ inputs.inputvalue_two }}"
+       
+      # Runs a single command using the runners shell cmd
+     - name: Run script with branch variable
+       run: echo "This is using variable for branch %GITHUB_REF_NAME%"
+       shell: cmd 
