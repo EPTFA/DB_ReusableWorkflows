@@ -29,3 +29,9 @@ jobs:
        
      - name: Check inputvalue_two - reusable file 1
        run: echo "This is in reusable file 1 - what value is in var inputvalue_two  ---   ${{ inputs.inputvalue_two }}"
+
+     - name: Echo repository name
+       run: echo ${{ github.repository }}
+       
+     - name: Echo repository name 1
+       run: echo "${{ github.repository }}"
