@@ -20,9 +20,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
        
-      - name: Run script with branch variable
-        run: echo "We are running code for input envirornmnt -  ${{ inputs.branchname }} " 
-       
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
