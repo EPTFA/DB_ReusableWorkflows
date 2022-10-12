@@ -8,13 +8,12 @@ on:
       targetfile:
         required: true
         type: string
-      sqloutputfileandpathname:
-        required: true
-        type: string
       targetdatabasename:
         required: true
         type: string
-      
+      sqloutputfileandpathname:
+        required: true
+        type: string      
    
 jobs:
   Create_delta_script_from_dacpacs:   
