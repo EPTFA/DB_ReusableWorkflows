@@ -45,7 +45,7 @@ jobs:
           sql-version: 14
               
       - name: Build dacpac
-        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Dev_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
+        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/dev_${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Dev_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
         
       - uses: actions/upload-artifact@v3
         with:
@@ -71,7 +71,7 @@ jobs:
             sql-version: 14
 
         - name: Build dacpac
-          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.QA_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
+          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/qa_${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.QA_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
           #run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ inputs.slqserverinstancename }}\${{ inputs.slqservername }} /SourceDatabaseName:${{ inputs.databasename }}
 
         - uses: actions/upload-artifact@v3
@@ -98,7 +98,7 @@ jobs:
             sql-version: 14
 
         - name: Build dacpac
-          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Prod_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
+          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/prod_${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Prod_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
 
         - uses: actions/upload-artifact@v3
           with:
