@@ -2,20 +2,18 @@ name: Build_dacpac_from_database_server_instance
 on:
   workflow_call:
     inputs:
-      outputfilename:
-        required: true
-        type: string
-      slqserverinstancename:
-        required: true
-        type: string
-      slqservername:
-        required: true
-        type: string
       databasename:
         required: true
         type: string
+      outputfilename:
+        required: true
+        type: string
+      branchname:
+        required: true
+        type: string
+  
       
-   
+      
 jobs:
   Check_env_variable:
     runs-on: self-hosted #windows-latest
@@ -24,10 +22,10 @@ jobs:
         shell: cmd
     steps:
       - name: Run script with branch variable
-        run: echo "We are running code for branch - %GITHUB_REF_NAME%" 
+        run: echo "We are running code for branch - ${{ input.branchname }} " 
         
   Build_dacpac_file_and_add_to_arifacts_env-dev:   
-   if: ${{ github.ref.name }} == 'env-dev'   
+   if: ${{ input.branchname }} == 'env-dev'   
    runs-on: self-hosted #windows-latest
    defaults:
       run:
@@ -37,7 +35,7 @@ jobs:
       - uses: actions/checkout@v3
        
       - name: Run script with branch variable
-        run: echo "We are running code for branch - %GITHUB_REF_NAME%" 
+        run: echo "We are running code for input envirornmnt -  ${{ input.envirornment }} " 
        
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
@@ -53,7 +51,7 @@ jobs:
           path: ${{ github.workspace }}/dev_${{ inputs.outputfilename }}
    
   Build_dacpac_file_and_add_to_arifacts_env-qa:   
-     if: ${{ github.ref.name }} == 'env-qa'   
+     if: ${{ input.branchname }} == 'env-qa'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
@@ -80,7 +78,7 @@ jobs:
             path: ${{ github.workspace }}/qa_${{ inputs.outputfilename }}
  
   Build_dacpac_file_and_add_to_arifacts_env-prod:   
-     if: ${{ github.ref.name }} == 'master'   
+     if: ${{ input.branchname }} == 'master'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
