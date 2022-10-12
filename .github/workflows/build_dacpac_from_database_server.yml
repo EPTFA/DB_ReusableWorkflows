@@ -22,14 +22,14 @@ jobs:
         shell: cmd
     steps:
       - name: Run script with branch variable
-        run: echo "We are running code for branch - ${{ inputs.branchname }} " 
+        run: echo "We are running code for branch - ${{ inputs.branchname }}"
         shell: pwsh
         
       - name: Run script with branch variable 2
         run: echo "We are running code for branch - %inputs.branchname% " 
         
   Build_dacpac_file_and_add_to_arifacts_env-dev:   
-   if: ${{ inputs.branchname }} == 'env-dev'   
+   if: inputs.branchname == 'env-dev'   
    runs-on: self-hosted #windows-latest
    defaults:
       run:
@@ -55,7 +55,7 @@ jobs:
           path: ${{ github.workspace }}/dev_${{ inputs.outputfilename }}
    
   Build_dacpac_file_and_add_to_arifacts_env-qa:   
-     if: ${{ inputs.branchname }} == 'env-qa'   
+     if: inputs.branchname == 'env-qa'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
@@ -82,7 +82,7 @@ jobs:
             path: ${{ github.workspace }}/qa_${{ inputs.outputfilename }}
  
   Build_dacpac_file_and_add_to_arifacts_env-prod:   
-     if: ${{ inputs.branchname }} == 'master'   
+     if: inputs.branchname == 'master'   
      runs-on: self-hosted #windows-latest
      defaults:
         run:
