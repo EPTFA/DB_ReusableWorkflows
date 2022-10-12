@@ -21,12 +21,15 @@ jobs:
       run:
         shell: cmd
     steps:
-      - name: Run script with branch variable
-        run: echo "We are running code for branch - ${{ inputs.branchname }}"
+      - name: Run script with branch variable with write-output command
+        run: write-output ${{ inputs.branchname }}
         shell: pwsh
         
       - name: Run script with branch variable 2
         run: echo "We are running code for branch - %inputs.branchname% " 
+      
+      - name: Echo variable 3 inputs branchname as %inputs.branchname% 
+        run: echo  %inputs.branchname% 
         
   Build_dacpac_file_and_add_to_arifacts_env-dev:   
    if: inputs.branchname == 'env-dev'   
