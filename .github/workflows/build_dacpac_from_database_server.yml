@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ${{ github.workspace }}/dev_${{ inputs.outputfilename }}
+          path: ${{ github.workspace }}/${{ inputs.outputfilename }}
    
   Build_dacpac_file_and_add_to_arifacts_env-qa:   
      if: github.ref_name == 'env-qa'   
@@ -60,7 +60,7 @@ jobs:
         - uses: actions/upload-artifact@v3
           with:
             name: my-artifact
-            path: ${{ github.workspace }}/qa_${{ inputs.outputfilename }}
+            path: ${{ github.workspace }}/${{ inputs.outputfilename }}
  
   Build_dacpac_file_and_add_to_arifacts_env-prod:   
      if: github.ref_name == 'master'   
@@ -86,4 +86,4 @@ jobs:
         - uses: actions/upload-artifact@v3
           with:
             name: my-artifact
-            path: ${{ github.workspace }}/prod_${{ inputs.outputfilename }}
+            path: ${{ github.workspace }}/${{ inputs.outputfilename }}
