@@ -11,9 +11,8 @@ on:
       branchname:
         required: true
         type: string
-  
-      
-      
+        default: 'env-dev'
+     
 jobs:
   Check_env_variable:
     runs-on: self-hosted #windows-latest
@@ -21,8 +20,8 @@ jobs:
       run:
         shell: cmd
     steps:
-      - name: Run script with branch variable with write-output command
-        run: write-output ${{ inputs.branchname }}
+      - name: Run script with branch variable with ${{ inputs.inputvalue_one }} 
+        run: echo " The input brnch name is set to ---   ${{ inputs.branchname }} "
         shell: pwsh
         
       - name: Run script with branch variable 2
