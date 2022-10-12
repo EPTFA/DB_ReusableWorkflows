@@ -28,7 +28,9 @@ jobs:
     
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
-        
+        with:
+          name: my-artifact
+          
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
