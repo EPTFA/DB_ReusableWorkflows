@@ -17,8 +17,8 @@ on:
       
    
 jobs:
-  Build_dacpac_file_and_add_to_arifacts:   
-  
+  Build_dacpac_file_and_add_to_arifacts_env-dev:   
+   if: github.ref.name == 'env-dev'   
    runs-on: self-hosted #windows-latest
    defaults:
       run:
@@ -33,12 +33,56 @@ jobs:
           sql-version: 14
               
       - name: Build dacpac
-        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ inputs.slqserverinstancename }}\${{ inputs.slqservername }} /SourceDatabaseName:${{ inputs.databasename }}
+        run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Dev_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
         
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: ${{ github.workspace }}/${{ inputs.outputfilename }}
    
-      #- name: check output file name
-      #  run: echo "This is the output filename $github.workspace / $inputs.outputfilename"
+  Build_dacpac_file_and_add_to_arifacts_env-qa:   
+     if: github.ref.name == 'env-qa'   
+     runs-on: self-hosted #windows-latest
+     defaults:
+        run:
+          shell: cmd
+     steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v3
+
+        - name: Add sqlpackage to PATH
+          uses: coreywebber/setup-sqlpackage@v1
+          with:
+            sql-version: 14
+
+        - name: Build dacpac
+          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.QA_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
+          #run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ inputs.slqserverinstancename }}\${{ inputs.slqservername }} /SourceDatabaseName:${{ inputs.databasename }}
+
+        - uses: actions/upload-artifact@v3
+          with:
+            name: my-artifact
+            path: ${{ github.workspace }}/${{ inputs.outputfilename }}
+ 
+  Build_dacpac_file_and_add_to_arifacts_env-prod:   
+     if: github.ref.name == 'main'   
+     runs-on: self-hosted #windows-latest
+     defaults:
+        run:
+          shell: cmd
+     steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v3
+
+        - name: Add sqlpackage to PATH
+          uses: coreywebber/setup-sqlpackage@v1
+          with:
+            sql-version: 14
+
+        - name: Build dacpac
+          run: sqlpackage.exe /TargetFile:${{ github.workspace }}/${{ inputs.outputfilename }} /Action:Extract /SourceServerName:${{ secrets.Prod_InstanceServerName }} /SourceDatabaseName:${{ inputs.databasename }}
+
+        - uses: actions/upload-artifact@v3
+          with:
+            name: my-artifact
+            path: ${{ github.workspace }}/${{ inputs.outputfilename }}
