@@ -58,31 +58,4 @@ jobs:
         
       - name: Apply delta script
         run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
- 
-  Deploy-dacpac-to-target-env-prod:   
-     if: github.ref_name == 'master'   
-     runs-on: self-hosted #windows-latest
-    # environment: 'env-prod'
-     defaults:
-        run:
-          shell: cmd
-     steps:
-       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      
-      - name: 'Echo we are in deploy - was it approved'
-        run: echo github.event.review.state
-        
-      - name: Add sqlpackage to PATH
-        uses: coreywebber/setup-sqlpackage@v1
-        with:
-          sql-version: 15
-          
-      - uses: actions/download-artifact@v3
-        id: download
-        with:
-          name: 'my-artifact'
-          path: path/to/artifacts
-        
-      - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
+
