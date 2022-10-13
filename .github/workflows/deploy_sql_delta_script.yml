@@ -19,14 +19,13 @@ jobs:
         with:
           sql-version: 14
           
-      - uses: actions/download-artifact@v3
-        id: download
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
         with:
-          name: 'my-artifact'
-          path: path/to/artifacts
+          name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}/delta_script.sql }}
           
   Deploy-dacpac-to-target-env-qa:   
      if: github.ref_name == 'env-qa'   
@@ -47,11 +46,10 @@ jobs:
         with:
           sql-version: 14
           
-      - uses: actions/download-artifact@v3
-        id: download
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
         with:
-          name: 'my-artifact'
-          path: path/to/artifacts
+          name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
+        run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
