@@ -25,7 +25,8 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+       # run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
           
   Deploy-dacpac-to-target-env-qa:   
      if: github.ref_name == 'env-qa'   
@@ -52,7 +53,8 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Qa_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+       # run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
         
   Deploy-dacpac-to-target-env-prod:   
      if: github.ref_name == 'master'   
@@ -71,7 +73,7 @@ jobs:
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
-          sql-version: 15
+          sql-version: 14
           
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
@@ -79,4 +81,5 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+        #run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
