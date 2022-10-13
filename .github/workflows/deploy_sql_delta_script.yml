@@ -30,8 +30,7 @@ jobs:
         
       - name: Apply delta script
         run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
-        
-   
+          
   Deploy-dacpac-to-target-env-qa:   
      if: github.ref_name == 'env-qa'   
      runs-on: self-hosted #windows-latest
