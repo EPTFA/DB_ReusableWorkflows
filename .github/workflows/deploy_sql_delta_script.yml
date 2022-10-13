@@ -58,4 +58,3 @@ jobs:
         
       - name: Apply delta script
         run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\${{ ${{steps.download.outputs.download-path}}/delta_script.sql }}
-
