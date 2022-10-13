@@ -13,14 +13,11 @@ jobs:
    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
-      - name: 'Echo we are in deploy - was it approved'
-        run: echo github.event.review.state
-        
+   
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
-          sql-version: 15
+          sql-version: 14
           
       - uses: actions/download-artifact@v3
         id: download
@@ -43,12 +40,12 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: 'Echo we are in deploy - was it approved'
-        run: echo github.event.review.state
+        run: echo "We are running code for branch - ${{ github.ref_name }}"
         
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
         with:
-          sql-version: 15
+          sql-version: 14
           
       - uses: actions/download-artifact@v3
         id: download
