@@ -25,7 +25,7 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}\delta_script.sql
        # run: cmd.exe /K sqlcmd -S ${{ secrets.Dev_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
           
   Deploy-dacpac-to-target-env-qa:   
@@ -53,7 +53,7 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Qa_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Qa_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}\delta_script.sql
        # run: cmd.exe /K sqlcmd -S ${{ secrets.QA_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
         
   Deploy-dacpac-to-target-env-prod:   
@@ -81,5 +81,5 @@ jobs:
           name: my-artifact
         
       - name: Apply delta script
-        run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}/delta_script.sql
+        run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\${{ steps.download.outputs.download-path }}\delta_script.sql
         #run: cmd.exe /K sqlcmd -S ${{ secrets.Prod_InstanceServerName }} -i ${{ github.workspace }}\delta_script.sql }}
