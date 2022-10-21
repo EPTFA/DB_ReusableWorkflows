@@ -22,8 +22,8 @@ try:
 # Create a unique name for the container
     #container_name = "githubactions-dacpac-from-runner" #str(uuid.uuid4())
 # Create the container
-    container_client = blob_service_client.create_container(container_name)
-    print("container_client - " + container_name  + " - created!")
+ #   container_client = blob_service_client.create_container(container_name)
+ #   print("container_client - " + container_name  + " - created!")
 
 # Create a file in the local data directory to upload and download
     local_file_name = "GITHUB_ACTIONDB_TESTING.dacpac" #str(uuid.uuid4()) + ".txt"
