@@ -18,7 +18,7 @@ jobs:
         shell: cmd
    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+     # - uses: actions/checkout@v3
        
       - name: Add sqlpackage to PATH
         uses: coreywebber/setup-sqlpackage@v1
